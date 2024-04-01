@@ -65,7 +65,6 @@ class Server:
         if len(data) == 0:
             page_size = 0
             next_page = None
-            total_pages = round(len(dataset) // page_size)
         elif page * page_size >= len(dataset):  # Last page
             next_page = None
         elif page == 1:

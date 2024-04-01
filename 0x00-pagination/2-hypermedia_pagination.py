@@ -3,7 +3,7 @@
 Hypermedia pagination.
 """
 import csv
-from typing import Tuple, List, Dict, Any
+from typing import Tuple, List, Dict, Union
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -50,7 +50,7 @@ class Server:
         content = dataset[start_index: end_index]
         return content
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Union[int , List[List]]]:
         """
         Returns a dictionary containing the page's details and data.
         """

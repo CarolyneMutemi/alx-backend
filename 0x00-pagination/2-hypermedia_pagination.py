@@ -3,6 +3,7 @@
 Hypermedia pagination.
 """
 import csv
+import math
 from typing import Tuple, List, Dict, Union
 
 
@@ -59,7 +60,7 @@ class Server:
         dataset = self.dataset()
         data = self.get_page(page, page_size)
         prev_page = page - 1
-        total_pages = len(dataset) / page_size
+        total_pages = math.ceil(len(dataset) / page_size)
         next_page = page + 1
         if len(data) == 0:
             page_size = 0

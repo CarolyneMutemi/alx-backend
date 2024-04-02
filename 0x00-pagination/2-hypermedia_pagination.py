@@ -59,12 +59,12 @@ class Server:
         dataset = self.dataset()
         data = self.get_page(page, page_size)
         prev_page = page - 1
-        total_pages = len(dataset) // page_size
+        total_pages = len(dataset) / page_size
         next_page = page + 1
         if len(data) == 0:
             page_size = 0
             next_page = None
-        elif page * page_size >= len(dataset):  # Last page
+        elif page >= total_pages:  # Last page
             next_page = None
         elif page == 1:
             prev_page = None
@@ -73,6 +73,6 @@ class Server:
                   "data": data,
                   "next_page": next_page,
                   "prev_page": prev_page,
-                  "total_pages": total_pages
+                  "total_pages": int(total_pages)
                   }
         return detail

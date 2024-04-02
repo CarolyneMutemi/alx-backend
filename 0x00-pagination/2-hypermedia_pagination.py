@@ -50,7 +50,7 @@ class Server:
         content = dataset[start_index: end_index]
         return content
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Union[int , List[List]]]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """
         Returns a dictionary containing the page's details and data.
         """

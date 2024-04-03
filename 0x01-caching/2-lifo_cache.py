@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-FIFO caching.
+LIFO caching.
 """
 from collections import OrderedDict
 from base_caching import BaseCaching
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """
-    Caching system that implements FIFO system.
+    Caching system that implements LIFO system.
     """
     def __init__(self):
         """ Initiliaze
@@ -19,13 +19,15 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """
         Inputs the key item pair to the cache_data dictionary.
-        Discards the first inserted item if items exceed the MAX_ITEMS.
+        Discards the last inserted item if items exceed the MAX_ITEMS.
         """
         if key and item:
-            self.cache_data[key] = item
-            if len(self.cache_data) > self.MAX_ITEMS:
-                discarded = self.cache_data.popitem(last=False)[0]
+            if len(self.cache_data) == self.MAX_ITEMS \
+                    and key not in self.cache_data:
+                discarded = self.cache_data.popitem()[0]
                 print(f"DISCARD: {discarded}")
+            self.cache_data[key] = item
+            self.cache_data.move_to_end(key)
 
     def get(self, key):
         """

@@ -26,7 +26,7 @@ class LRUCache(BaseCaching):
                 k = sorted_keys[0]
                 self.cache_data.pop(k)
                 self.check_age.pop(k)
-                print(f"DISCARDED: {k}")
+                print(f"DISCARD: {k}")
             self.cache_data[key] = item
             self.age += 1
             self.check_age[key] = self.age

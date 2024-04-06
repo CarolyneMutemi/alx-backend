@@ -27,16 +27,16 @@ class LFUCache(BaseCaching):
             limit = len(self.cache_data) == self.MAX_ITEMS
             if limit and key not in self.cache_data:
                 least = min(sorted(self.frequency,
-                                       key=lambda k: self.frequency[k]),
-                                key=lambda k: self.frequency[k])
+                            key=lambda k: self.frequency[k]),
+                            key=lambda k: self.frequency[k])
                 least_frequent = [k for k in self.frequency
                                   if self.frequency[k]
                                   == self.frequency[least]]
                 least_recent = min(sorted(
-                    {k:v for k, v in self.LRUChecker.items()
+                    {k: v for k, v in self.LRUChecker.items()
                      if k in least_frequent},
-                     key=lambda k: self.LRUChecker[k]),
-                     key=lambda k: self.LRUChecker[k])
+                    key=lambda k: self.LRUChecker[k]),
+                    key=lambda k: self.LRUChecker[k])
                 if len(least_frequent) > 1:
                     discard = least_recent
                 else:
